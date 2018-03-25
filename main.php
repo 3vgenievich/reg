@@ -42,7 +42,7 @@ try {
         
         echo 'access token: ' . $access_token['access_token']
             . '<br />user id: ' . $access_token['user_id'] . '<br /><br />';
-        $query =mysqli_query($con,"INSERT INTO users('VK_TOKEN','VK_ID') WHERE LOGIN='".$LOGIN."'VALUES('".$access_token['access_token']."','".$access_token['user_id']."')");
+        $query =mysqli_query($con,"INSERT INTO users(VK_TOKEN,VK_ID) WHERE LOGIN='".$_SESSION['session_username']."'VALUES('".$access_token['access_token']."','".$access_token['user_id']."')");
         $user_friends = $vk->api('friends.get', array(
             'uid'       => '12345',
             'fields'    => 'uid,first_name,last_name',

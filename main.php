@@ -22,7 +22,7 @@ require_once('./oauth/src/VKException.php');
 $vk_config = array(
     'app_id'        => '6420848',
     'api_secret'    => 'e5yGpPz6JJB2SYWcS6Kq',
-    'callback_url'  => 'https://tryinthatsht.herokuapp.com/oauth/main.php',
+    'callback_url'  => 'https://tryinthatsht.herokuapp.com/main.php',
     'api_settings'  => 'offline' // In this example use 'friends'.
     // If you need infinite token use key 'offline'.
 );

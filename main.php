@@ -34,18 +34,16 @@ try {
     if (!isset($_REQUEST['code'])) {
         $authorize_url = $vk->getAuthorizeURL(
             $vk_config['api_settings'], $vk_config['callback_url']);
-            
-       
+
         echo '<a href="' . $authorize_url . '">Авторизоваться через ВК</a>';
     } else {
         $access_token = $vk->getAccessToken($_REQUEST['code'], $vk_config['callback_url']);
           $token=$access_token['access_token'];
         $idvk=$access_token['user_id'];
-	  $log=$_SESSION["session_username"];
+        $log=$_SESSION["session_username"];
         echo 'access token: ' . $token
             . '<br />user id: ' . $idvk . '<br /><br />';
-    
-           mysqli_query($con,"UPDATE users SET VK_TOKEN='$token' WHERE LOGIN='$log';");
+        mysqli_query($con,"UPDATE users SET VK_TOKEN='$token' WHERE LOGIN='$log';");
 	   mysqli_query($con,"UPDATE users SET VK_ID='$idvk' WHERE LOGIN='$log';");
         $user_friends = $vk->api('friends.get', array(
             'uid'       => '12345',
@@ -209,6 +207,8 @@ if (!empty($_GET['oauth_token']) && !empty($_GET['oauth_verifier'])) {
     $user_data = json_decode($response, true);
     echo 'oauth token: ' . $oauth_token . '<br />verifier: ' . $oauth_verifier . '<br /><br />';
     echo 'oauth token: ' . $oauth_timestamp . '<br />verifier: ' . $oauth_token_secret . '<br /><br />';
+     mysqli_query($con,"UPDATE users SET TW_TOKEN='$oauth_token' WHERE LOGIN='$log';");
+	   mysqli_query($con,"UPDATE users SET TW_VERIFYER='$oauth_verifier' WHERE LOGIN='$log';");
 }
 ?>
 

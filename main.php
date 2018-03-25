@@ -39,12 +39,13 @@ try {
         echo '<a href="' . $authorize_url . '">Авторизоваться через ВК</a>';
     } else {
         $access_token = $vk->getAccessToken($_REQUEST['code'], $vk_config['callback_url']);
-        
-        echo 'access token: ' . $access_token['access_token']
-            . '<br />user id: ' . $access_token['user_id'] . '<br /><br />';
+          $token=$access_token['access_token'];
+        $idvk=$access_token['user_id'];
+        echo 'access token: ' . $token
+            . '<br />user id: ' . $idvk . '<br /><br />';
         $token=$access_token['access_token'];
         $idvk=$access_token['user_id'];
-       mysqli_query($con,"UPDATE 'users' SET 'VK_token'=$token WHERE LOGIN='".$_SESSION["session_username"]."");
+        mysqli_query($con,"UPDATE 'users' SET 'VK_token'=$token WHERE LOGIN='".$_SESSION["session_username"]."");
         $user_friends = $vk->api('friends.get', array(
             'uid'       => '12345',
             'fields'    => 'uid,first_name,last_name',

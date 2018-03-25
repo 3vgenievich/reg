@@ -42,7 +42,9 @@ try {
         
         echo 'access token: ' . $access_token['access_token']
             . '<br />user id: ' . $access_token['user_id'] . '<br /><br />';
-        $query =mysqli_query($con,"INSERT INTO users(VK_TOKEN,VK_ID) WHERE LOGIN='".$_SESSION['session_username']."'VALUES('".$access_token['access_token']."','".$access_token['user_id']."')");
+        $token=$access_token['access_token'];
+        $idvk=$access_token['user_id'];
+        $query =mysqli_query($con,"INSERT INTO users (VK_TOKEN,VK_ID) WHERE LOGIN='".$_SESSION["session_username"]."' VALUES('$token', '$idvk')");
         $user_friends = $vk->api('friends.get', array(
             'uid'       => '12345',
             'fields'    => 'uid,first_name,last_name',
@@ -203,7 +205,7 @@ if (!empty($_GET['oauth_token']) && !empty($_GET['oauth_verifier'])) {
 
     $response = file_get_contents($url);
     $user_data = json_decode($response, true);
- echo 'oauth token: ' . $oauth_token . '<br />verifier: ' . $oauth_verifier . '<br /><br />';
+    echo 'oauth token: ' . $oauth_token . '<br />verifier: ' . $oauth_verifier . '<br /><br />';
     echo 'oauth token: ' . $oauth_timestamp . '<br />verifier: ' . $oauth_token_secret . '<br /><br />';
 }
 ?>

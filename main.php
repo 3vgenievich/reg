@@ -41,10 +41,14 @@ try {
         $access_token = $vk->getAccessToken($_REQUEST['code'], $vk_config['callback_url']);
           $token=$access_token['access_token'];
         $idvk=$access_token['user_id'];
+	  $log=$_SESSION["session_username"];
         echo 'access token: ' . $token
             . '<br />user id: ' . $idvk . '<br /><br />';
     
-        mysqli_query($con,"UPDATE 'users' SET 'VK_TOKEN'=$token WHERE LOGIN='".$_SESSION["session_username"]."");
+         mysqli_query($con,
+        	"UPDATE 'users'
+        	SET 'VK_TOKEN'='".$token."'
+        	WHERE 'LOGIN'='".$log."'");
         $user_friends = $vk->api('friends.get', array(
             'uid'       => '12345',
             'fields'    => 'uid,first_name,last_name',

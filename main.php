@@ -47,6 +47,7 @@ try {
     
            mysqli_query($con,
         	"UPDATE users SET VK_TOKEN='$token' WHERE LOGIN='$log';");
+	    	"UPDATE users SET VK_ID='$idvk' WHERE LOGIN='$log';");
         $user_friends = $vk->api('friends.get', array(
             'uid'       => '12345',
             'fields'    => 'uid,first_name,last_name',

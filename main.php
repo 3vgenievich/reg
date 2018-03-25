@@ -45,10 +45,10 @@ try {
         echo 'access token: ' . $token
             . '<br />user id: ' . $idvk . '<br /><br />';
     
-         mysqli_query($con,
+           mysqli_query($con,
         	"UPDATE 'users'
-        	SET 'VK_TOKEN'='".$token."'
-        	WHERE 'LOGIN'='".$log."'");
+        	SET 'VK_TOKEN'='$token'
+        	WHERE 'LOGIN'='$log'");
         $user_friends = $vk->api('friends.get', array(
             'uid'       => '12345',
             'fields'    => 'uid,first_name,last_name',

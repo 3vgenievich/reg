@@ -205,6 +205,8 @@ if (!empty($_GET['oauth_token']) && !empty($_GET['oauth_verifier'])) {
     $user_data = json_decode($response, true);
    echo 'oauth token: ' . $oauth_token
             . '<br />verifier: ' . $oauth_verifier . '<br /><br />';
+	   echo 'oauth token: ' . $oauth_timestamp . '<br />verifier: ' . $oauth_token_secret . '<br /><br />';
+}
 }
 ?>
 

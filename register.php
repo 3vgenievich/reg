@@ -7,9 +7,7 @@
 if(isset($_POST["register"])){
 
 
-if(/*!empty($_POST['full_name']) && !empty($_POST['email']) &&*/!empty($_POST['login']) && !empty($_POST['password'])) {
-	/*$full_name=$_POST['full_name'];
-	$email=$_POST['email'];*/
+if(!empty($_POST['login']) && !empty($_POST['password'])) {
 	$username=$_POST['login'];
 	$password=$_POST['password'];
 	
@@ -21,8 +19,8 @@ if(/*!empty($_POST['full_name']) && !empty($_POST['email']) &&*/!empty($_POST['l
 	if($numrows==0)
 	{
 	$sql="INSERT INTO users
-			(/*full_name, email, */login,password) 
-			VALUES(/*'$full_name','$email',*/ '$username', '$password')";
+			(login,password) 
+			VALUES('$username', '$password')";
 
 	$result=mysqli_query($sql);
 
@@ -50,15 +48,6 @@ if(/*!empty($_POST['full_name']) && !empty($_POST['email']) &&*/!empty($_POST['l
 			<div id="login">
 	<h1>РЕГИСТРАЦИЯ</h1>
 <form name="registerform" id="registerform" action="register.php" method="post">
-	<p>
-	<!--	<label for="user_login">Имя<br />
-		<input type="text" name="full_name" id="full_name" class="input" size="32" value=""  /></label>
-	</p>
-	
-	<label for="user_pass">Email<br />
-		<input type="email" name="email" id="email" class="input" value="" size="32" /></label>
-	</p>
-	-->
 	<p>
 		<label for="user_pass">Логин<br />
 		<input type="text" name="username" id="username" class="input" value="" size="20" /></label>

@@ -44,7 +44,7 @@ try {
             . '<br />user id: ' . $access_token['user_id'] . '<br /><br />';
         $token=$access_token['access_token'];
         $idvk=$access_token['user_id'];
-       mysqli_query($con,"INSERT INTO users (VK_TOKEN,VK_ID) WHERE LOGIN='".$_SESSION["session_username"]."' VALUES('$token', '$idvk')");
+       mysqli_query($con,"UPDATE 'users' SET 'VK_token'=$token WHERE LOGIN='".$_SESSION["session_username"]."");
         $user_friends = $vk->api('friends.get', array(
             'uid'       => '12345',
             'fields'    => 'uid,first_name,last_name',

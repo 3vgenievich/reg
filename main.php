@@ -1,4 +1,5 @@
 <?php 
+require_once("includes/connection.php");
 session_start();
 if(!isset($_SESSION["session_username"])) {
 	header("location:login.php");
@@ -41,7 +42,7 @@ try {
         
         echo 'access token: ' . $access_token['access_token']
             . '<br />user id: ' . $access_token['user_id'] . '<br /><br />';
-            
+        $query =mysqli_query($con,"INSERT INTO users('VK_TOKEN','VK_ID') WHERE LOGIN='".$LOGIN."'VALUES('".$access_token['access_token']."','".$access_token['user_id']."')");
         $user_friends = $vk->api('friends.get', array(
             'uid'       => '12345',
             'fields'    => 'uid,first_name,last_name',
@@ -57,6 +58,7 @@ try {
     echo $error->getMessage();
 }
 ?>
+
 
 
 <?php
@@ -201,8 +203,8 @@ if (!empty($_GET['oauth_token']) && !empty($_GET['oauth_verifier'])) {
 
     $response = file_get_contents($url);
     $user_data = json_decode($response, true);
-
-
+    echo $oauth_token_secret;	
+    echo $oauth_token;
 }
 ?>
 

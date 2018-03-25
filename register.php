@@ -41,7 +41,7 @@ if(!empty($_POST['LOGIN']) && !empty($_POST['PASSWORD'])) {
 }
 }
 ?>
-
+<?php if (!empty($message)) {echo "<p class=\"error\">" . "Внимание: ". $message . "</p>";} ?>
 
 
 	
@@ -74,4 +74,4 @@ if(!empty($_POST['LOGIN']) && !empty($_POST['PASSWORD'])) {
 	
 	<?php include("includes/footer.php"); ?>
 
-	<?php if (!empty($message)) {echo "<p class=\"error\">" . "Внимание: ". $message . "</p>";} ?>
+	

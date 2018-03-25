@@ -1,5 +1,4 @@
 <?php 
-require_once("includes/connection.php");
 session_start();
 if(!isset($_SESSION["session_username"])) {
 	header("location:login.php");
@@ -14,6 +13,7 @@ if(!isset($_SESSION["session_username"])) {
 error_reporting(E_ALL);
 require_once('./oauth/src/VK.php');
 require_once('./oauth/src/VKException.php');
+require_once('includes/connection.php');
 
 
 

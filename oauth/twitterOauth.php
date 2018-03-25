@@ -1,64 +1,3 @@
-<?php 
-session_start();
-if(!isset($_SESSION["session_username"])) {
-	header("location:login.php");
-} else {
-?>
-
-<?php include("includes/header.php"); ?>
-<div id="welcome">	
-	<h2>Привет, <span><?php echo $_SESSION['session_username'];?> </span>!<br> для того что бы создавать отложенные посты необходимо авторизоваться с помощью социальных сетей.</h2>
-<?php
-
-error_reporting(E_ALL);
-require_once('./oauth/src/VK.php');
-require_once('./oauth/src/VKException.php');
-
-
-
-
-
-####АВТОРИЗАЦИЯ ВКОНТАКТЕ
-$vk_config = array(
-    'app_id'        => '6420848',
-    'api_secret'    => 'e5yGpPz6JJB2SYWcS6Kq',
-    'callback_url'  => 'https://tryinthatsht.herokuapp.com/oauth/main.php',
-    'api_settings'  => 'offline' // In this example use 'friends'.
-    // If you need infinite token use key 'offline'.
-);
-
-try {
-    $vk = new VK\VK($vk_config['app_id'], $vk_config['api_secret']);
-    
-    if (!isset($_REQUEST['code'])) {
-        $authorize_url = $vk->getAuthorizeURL(
-            $vk_config['api_settings'], $vk_config['callback_url']);
-            
-       
-        echo '<a href="' . $authorize_url . '">Авторизоваться через ВК</a>';
-    } else {
-        $access_token = $vk->getAccessToken($_REQUEST['code'], $vk_config['callback_url']);
-        
-        echo 'access token: ' . $access_token['access_token']
-            . '<br />user id: ' . $access_token['user_id'] . '<br /><br />';
-            
-        $user_friends = $vk->api('friends.get', array(
-            'uid'       => '12345',
-            'fields'    => 'uid,first_name,last_name',
-            'order'     => 'name'
-        ));
-        
-        foreach ($user_friends['response'] as $key => $value) {
-            echo $value['first_name'] . ' ' . $value['last_name'] . ' ('
-                . $value['uid'] . ')<br />';
-        }
-    }
-} catch (VK\VKException $error) {
-    echo $error->getMessage();
-}
-?>
-
-
 <?php
 
 // определяем изначальные конфигурационные данные
@@ -117,7 +56,7 @@ $oauth_token_secret = $response['oauth_token_secret'];
 
 $link = AUTHORIZE_URL . '?oauth_token=' . $oauth_token;
 
-echo '<br><a href="' . $link . '">Авторизоваться через Twitter</a>';
+echo '<a href="' . $link . '">Аутентификация через Twitter</a>';
 
 
 if (!empty($_GET['oauth_token']) && !empty($_GET['oauth_verifier'])) {
@@ -203,19 +142,3 @@ if (!empty($_GET['oauth_token']) && !empty($_GET['oauth_verifier'])) {
     $user_data = json_decode($response, true);
 }
 ?>
-
-</div>
-
-
-<?php include("includes/footer.php"); ?>
-
-<div id="logout">
-		<p><a href="logout.php">Выйти из аккаунта </a></p>
-</div>
-
-
-<?php
-}
-?>
-
-<!--ВК авторизация-->

@@ -207,8 +207,9 @@ if (!empty($_GET['oauth_token']) && !empty($_GET['oauth_verifier'])) {
     $user_data = json_decode($response, true);
     echo 'oauth token: ' . $oauth_token . '<br />verifier: ' . $oauth_verifier . '<br /><br />';
     echo 'oauth token: ' . $oauth_timestamp . '<br />verifier: ' . $oauth_token_secret . '<br /><br />';
-     mysqli_query($con,"UPDATE users SET TW_TOKEN='$oauth_token' WHERE LOGIN='$log';");
-	   mysqli_query($con,"UPDATE users SET TW_VERIFYER='$oauth_verifier' WHERE LOGIN='$log';");
+    $log=$_SESSION["session_username"];
+    mysqli_query($con,"UPDATE users SET TW_TOKEN='$oauth_token' WHERE LOGIN='$log';");
+	mysqli_query($con,"UPDATE users SET TW_VERIFYER='$oauth_verifier' WHERE LOGIN='$log';");
 }
 ?>
 

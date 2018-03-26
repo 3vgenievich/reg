@@ -15,6 +15,7 @@ if(!isset($_SESSION["session_username"])) {
     
     <h2><span><?php echo $_SESSION['session_username'];?></span></h2>
     <form method="POST" action="">
+
     <input type="checkbox" name="checkVK" id="checkedVW" class="input" value="VK" /><a>опубликовать в VK</a>  
     <input type="checkbox" name="checkTW" id="checkedTW " class="input" value="TW" /><a>опубликовать в twitter</a><br>
     <textarea name="textposta" maxlength="140" cols="68" rows="4"  placeholder="Введите текст вашего поста ..." class="input"></textarea>
@@ -36,19 +37,17 @@ if(!isset($_SESSION["session_username"])) {
 include("includes/footer.php");
 ?>
 <?php
-
-
 if(isset($_POST["submit"])){
 
-if(IsSET($_POST['checkVK'])or IsSET($_POST['checkTW']) && isset($_POST['textposta']) or isset($_POST['imgsrc'])&& isset($_POST['datetime'])){
-    $checkVK=$_POST['checkVK'];
-    $checkTW=$_POST['checkTW'];
+if(isset($_POST['textposta']) or isset($_POST['imgsrc'])&& isset($_POST['datetime'])){
+   $checkVK=!empty($_POST['checkVK']);
+    $checkTW=!empty($_POST['checkTW']);
     $textposta=$_POST['textposta'];
     $imgsrc=$_POST['imgsrc'];
     $datetime=$_POST['datetime'];
     $LOGIN=$_SESSION['session_username'];
     
-    $sql="INSERT INTO posts (LOGIN,VK,TW,*/TEXT,DATETIME,IMG,VKGROUP_ID,RETWEET_URL) VALUES('$LOGIN','$checkVK','$checkTW','$textposta','$imgsrc','$datetime')";
+    $sql="INSERT INTO posts (LOGIN,VK,TW,TEXT,DATETIME,IMG) VALUES('$LOGIN','$checkVK','$checkTW','$textposta','$datetime','$imgsrc')";
 
     $result=mysqli_query($con,$sql);
 

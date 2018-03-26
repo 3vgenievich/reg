@@ -1,10 +1,10 @@
 <?php
 error_reporting(0);
 
-require 'vk.php';
+/*require 'vk.php';
 require 'post.php';
 ####Добавить бд и загрузку по сессиям
-$token = '1e0f79ef10817ce514bd0cb5ae7656a5126b087edc4b0d9658bab3f566897450916c864aae8c587f6a4e5';
+$token = '903104ac2c9faf89d65c8759e3264422695d36bb1bd21e452558ce126667da7a02850b2fefa3b35bf6878';
 $user_id = 27576466;
 $group_id = null;
 
@@ -19,4 +19,27 @@ try {
 } catch(Exception $e){
     echo 'Error: <b>' . $e->getMessage() . '</b><br />';
     echo 'in file "' . $e->getFile() . '" on line ' . $e->getLine();
+}*/
+?>
+<!-- Подключение Open API -->
+<script src="http://vk.com/js/api/openapi.js" type="text/javascript"></script>
+ 
+<!-- Кнопка аутентификации в соц. сети -->
+<div id="login_button" onclick="VK.Auth.login(RedBookCMSautoPosting);"></div>
+<script language="javascript">
+VK.init({
+    apiId: 	6424647 /* сюда выписываем идентификатор приложения */
+});
+ 
+function RedBookCMSautoPosting(response) {
+    var content = "VK Open API проверка автопостинга.";
+    if (response.session) {
+        VK.Api.call('wall.post', {message: content}, function(r) {}); 
+    } else {
+        alert('Не авторизован!');
+    }
 }
+ 
+VK.Auth.getLoginStatus(RedBookCMSautoPosting);
+VK.UI.button('login_button');
+</script>

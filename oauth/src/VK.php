@@ -119,7 +119,7 @@ class VK
             'client_id' => $this->app_id,
             'scope' => $api_settings,
             'redirect_uri' => $callback_url,
-            'display'=>'page',
+            'display'=>'popup',
             'response_type' => 'token'
         );
 

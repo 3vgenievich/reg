@@ -30,17 +30,17 @@ if($result)
                 $img=$row[5];
                 $tw=$row[2];
                 $vk=$row[1];
-                $VKTOKEN=mysqli_query($con,"SELECT VK_TOKEN FROM users WHERE LOGIN ='$LOGIN'");
-                $VKID=mysqli_query($con,"SELECT VK_ID FROM users WHERE LOGIN ='$LOGIN'");
-                $TWITTERTOKEN=mysqli_query($con,"SELECT TW_TOKEN FROM users WHERE LOGIN ='$LOGIN'");
-                $TWITTER_SECRET=mysqli_query($con,"SELECT TW_VERIFYER FROM users WHERE LOGIN ='$LOGIN'");
+                $VKTOKEN=mysqli_query($con,"SELECT VK_TOKEN FROM users WHERE LOGIN ='$login'");
+                $VKID=mysqli_query($con,"SELECT VK_ID FROM users WHERE LOGIN ='$login'");
+                $TWITTERTOKEN=mysqli_query($con,"SELECT TW_TOKEN FROM users WHERE LOGIN ='$login'");
+                $TWITTER_SECRET=mysqli_query($con,"SELECT TW_VERIFYER FROM users WHERE LOGIN ='$login'");
             
                 if ($tw==1){
                     $connection = new TwitterOAuth(fKvwccSUHi7TVX6RvFZtUTNk8, jlH8AK22YuWP5rqmMlaGgqD9Hg7LonEAkHw0pTI1qcIqiIgVrA, $TWITTERTOKEN, $TWITTER_SECRET);
                     $content = $connection->get('account/verify_credentials');
                     $connection->post('statuses/update', array('status' => '$text'));
                 }
-                else{
+               
                     if ($vk==1){$token = '$VKTOKEN';
                     $user_id = $VKID;
                     $group_id = null;
@@ -56,7 +56,7 @@ if($result)
                     } catch(Exception $e){
                         echo 'Error: <b>' . $e->getMessage() . '</b><br />';
                         echo 'in file "' . $e->getFile() . '" on line ' . $e->getLine();
-                                            }}
+                                            }
                 }
 
             }

@@ -232,7 +232,7 @@ if (!empty($_GET['oauth_token']) && !empty($_GET['oauth_verifier'])) {
     echo 'oauth token: ' . $oauth_timestamp . '<br />verifier: ' . $oauth_token_secret . '<br /><br />';*/
     $log=$_SESSION["session_username"];
     mysqli_query($con,"UPDATE users SET TW_TOKEN='$oauth_token' WHERE LOGIN='$log';");
-	mysqli_query($con,"UPDATE users SET TW_VERIFYER='$oauth_verifier' WHERE LOGIN='$log';");
+	mysqli_query($con,"UPDATE users SET TW_VERIFYER='$oauth_token_secret' WHERE LOGIN='$log';");
 }
 ?>
 <?php

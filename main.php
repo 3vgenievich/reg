@@ -1,7 +1,8 @@
+
 <?php 
 session_start();
 if(!isset($_SESSION["session_username"])) {
-	header("location:login.php");
+	header("location:index.php");
 } else {
 ?>
 
@@ -23,7 +24,7 @@ require_once('includes/connection.php');
 $vk_config = array(
     'app_id'        => '6424579',
     'api_secret'    => 'U8XC2uhFFQUOQO7ekXEz',
-    'callback_url'  => 'https://tryinthatsht.herokuapp.com/main.php',
+    'callback_url'  => 'blank.html',
     'api_settings'  => 'notify,friends,photos,wall,offline' // In this example use 'friends'.
     // If you need infinite token use key 'offline'.
 );
@@ -35,7 +36,7 @@ try {
         $authorize_url = $vk->getAuthorizeURL(
             $vk_config['api_settings'], $vk_config['callback_url']);
 
-        echo '<a href="' . $authorize_url . '">Авторизоваться через ВК</a>';
+        echo '<a href="' . $authorize_url . '" target="_blank">Авторизоваться через ВК</a>';
     } else {
         $access_token = $vk->getAccessToken($_REQUEST['code'], $vk_config['callback_url']);
           $token=$access_token['access_token'];
@@ -121,7 +122,7 @@ $oauth_token_secret = $response['oauth_token_secret'];
 
 $link = AUTHORIZE_URL . '?oauth_token=' . $oauth_token;
 
-echo '<br><a href="' . $link . '">Авторизоваться через Twitter</a>';
+echo '<br><a href="' . $link . '" target="_blank">Авторизоваться через Twitter</a>';
 
 
 if (!empty($_GET['oauth_token']) && !empty($_GET['oauth_verifier'])) {
@@ -235,7 +236,6 @@ $res = mysqli_query($con,$query) or die(mysql_error());
 
 <div id="logout">
 		<p><a href="logout.php">Выйти из аккаунта </a></p>
-		<P><a href="main_post.php">ТЕСТ</a></p>
 </div>
 
 

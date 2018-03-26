@@ -39,9 +39,10 @@ $result = mysqli_query($con, $query);
             }
 
                 echo $VKTOKEN;
-                 $token = $VKTOKEN;
-                $user_id = $VKID;
-                 $group_id =$VKID;
+                echo $VKID;
+                 $token = '$VKTOKEN';
+                $user_id = '$VKID';
+                 $group_id ='$VKID';
 
                 $text = '$texto';
                 $image = '$img';
@@ -57,9 +58,16 @@ $result = mysqli_query($con, $query);
                                             }
                     } else{}
         if ($tw!=0){
-                $TWITTERTOKEN=mysqli_query($con,"SELECT TW_TOKEN FROM users WHERE LOGIN ='".$login."'");
-                $TWITTER_SECRET=mysqli_query($con,"SELECT TW_VERIFYER FROM users WHERE LOGIN ='".$login."'");
-
+                 $query =mysqli_query($con,"SELECT * FROM users WHERE LOGIN ='".$login."'");
+                $numrows=mysqli_num_rows($query);
+                if($numrows!=0)
+                {
+                while($row=mysqli_fetch_assoc($query))
+                {
+                $TWITTERTOKEN=$row['TW_TOKEN'];
+                $TWITTERSECRET=$row['TW_VERIFYER'];
+                };
+            }
                 $CONSUMERKEY='fKvwccSUHi7TVX6RvFZtUTNk8';
                 $CONSUMERSECRET='jlH8AK22YuWP5rqmMlaGgqD9Hg7LonEAkHw0pTI1qcIqiIgVrA';
                 $connection = new TwitterOAuth($CONSUMERKEY,$CONSUMERSECRET,$TWITTERTOKEN,$TWITTER_SECRET);

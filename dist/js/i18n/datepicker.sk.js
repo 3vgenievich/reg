@@ -6,7 +6,7 @@
     monthsShort: ['Jan', 'Feb', 'Mar', 'Apr', 'Máj', 'Jún', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dec'],
     today: 'Dnes',
     clear: 'Vymazať',
-    dateFormat: 'dd.mm.yyyy',
+    dateFormat: 'yyyy-mm-dd',
     timeFormat: 'hh:ii',
     firstDay: 1
 }; })(jQuery);

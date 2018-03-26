@@ -1480,7 +1480,7 @@
             monthsShort: ['Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн', 'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек'],
             today: 'Сегодня',
             clear: 'Очистить',
-            dateFormat: 'dd.mm.yyyy',
+            dateFormat: 'yyyy-mm-dd',
             timeFormat: 'hh:ii',
             firstDay: 1
         }

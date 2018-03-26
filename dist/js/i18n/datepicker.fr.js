@@ -6,7 +6,7 @@
     monthsShort: ['Jan', 'Fév', 'Mars', 'Avr', 'Mai', 'Juin', 'Juil', 'Août', 'Sep', 'Oct', 'Nov', 'Dec'],
     today: "Aujourd'hui",
     clear: 'Effacer',
-    dateFormat: 'dd/mm/yyyy',
+    dateFormat: 'yyyy-mm-dd',
     timeFormat: 'hh:ii',
     firstDay: 1
 }; })(jQuery);

@@ -6,7 +6,7 @@
     monthsShort: ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'],
     today: 'Heute',
     clear: 'Aufräumen',
-    dateFormat: 'dd.mm.yyyy',
+    dateFormat: 'yyyy-mm-dd',
     timeFormat: 'hh:ii',
     firstDay: 1
 };

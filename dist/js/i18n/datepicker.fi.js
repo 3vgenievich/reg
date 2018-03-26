@@ -6,7 +6,7 @@
     monthsShort: ['Tammi', 'Helmi', 'Maalis', 'Huhti', 'Touko', 'Kesä', 'Heinä', 'Elo', 'Syys', 'Loka', 'Marras', 'Joulu'],
     today: 'Tänään',
     clear: 'Tyhjennä',
-    dateFormat: 'dd.mm.yyyy',
+    dateFormat: 'yyyy-mm-dd',
     timeFormat: 'hh:ii',
     firstDay: 1
 };

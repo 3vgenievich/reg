@@ -19,11 +19,11 @@ $result = mysqli_query($con, $query);
     for ($i = 0 ; $i < $rows ; ++$i)
     {
        while( $row = mysqli_fetch_assoc($result)){
-                $login=$row['LOGIN'];
-                $text =$row['TEXT'];
-                $img=$row['IMG'];
+                 $login=$row['LOGIN'];
+                 $texto =$row['TEXT'];
+                 $img=$row['IMG'];
                 $tw=$row['VK'];
-                $vk=$row['TW'];
+                 $vk=$row['TW'];
                 };
                 $VKTOKEN=mysqli_query($con,"SELECT VK_TOKEN FROM users WHERE LOGIN ='$login'");
                 $VKID=mysqli_query($con,"SELECT VK_ID FROM users WHERE LOGIN ='$login'");
@@ -33,20 +33,21 @@ $result = mysqli_query($con, $query);
                 $CONSUMERSECRET='jlH8AK22YuWP5rqmMlaGgqD9Hg7LonEAkHw0pTI1qcIqiIgVrA';
             
                 if ($tw==1){
-                    $connection = new TwitterOAuth($CONSUMERKEY,$CONSUMERSECRET , $TWITTERTOKEN, $TWITTER_SECRET);
+                    $connection = new TwitterOAuth($CONSUMERKEY,$CONSUMERSECRET,$TWITTERTOKEN,$TWITTER_SECRET);
                     $content = $connection->get('account/verify_credentials');
                     $connection->post('statuses/update', array('status' => '$text'));
                 }
                
-                    if ($vk==1){$token = '$VKTOKEN';
+                if ($vk==1){
+                    $token = $VKTOKEN;
                     $user_id = $VKID;
                     $group_id = null;
 
-                    $text = '$text';
-                    $image = '$img';
+                    $text = $text;
+                    $image = $img;
 
                     try {
-                        $vk = \vkApi\vk::create($token);
+                        $vk = \vkApi\vk::create('$token');
                         $post = new \vkApi\post($vk, $user_id, $group_id);
                         $post->post($text, $image);
                         echo 'Success!';

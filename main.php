@@ -66,7 +66,7 @@ try {
 <form name="addtokenform" id="addtokenform" action="" method="post">
         <input type="text" name="token" id="token" class="input" value="" size="50" placeholder="Вставьте сюда токен вконтакте" />
         <input type="text" name="uid" id="uid" class="input" value="" size="50" placeholder="Вставьте сюда ID вконтакте" />
-        <input type="submit" name="submit" id="register" class="button" value="ОК" />
+        <input type="submit" name="submit" id="register" class="button" value="ОК" onclick = "this.style.visibility='hidden'" />
 
 </form>
 

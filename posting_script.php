@@ -33,12 +33,12 @@ $result = mysqli_query($con, $query);
                 $CONSUMERKEY='fKvwccSUHi7TVX6RvFZtUTNk8';
                 $CONSUMERSECRET='jlH8AK22YuWP5rqmMlaGgqD9Hg7LonEAkHw0pTI1qcIqiIgVrA';
         if ($vk!=0){
-                $token = $VKTOKEN;
-                $user_id = $VKID;
-                $group_id =$VKID;
+                $token = '$VKTOKEN';
+                $user_id = '$VKID';
+                $group_id ='$VKID';
 
-                $text = $texto;
-                $image = $img;
+                $text = '$texto';
+                $image = '$img';
 
                     try {
                         $vk = \vkApi\vk::create('$token');

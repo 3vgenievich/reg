@@ -42,8 +42,8 @@ try {
           $token=$access_token['access_token'];
         $idvk=$access_token['user_id'];
         $log=$_SESSION["session_username"];
-        echo 'access token: ' . $token
-            . '<br />user id: ' . $idvk . '<br /><br />';
+     /*   echo 'access token: ' . $token
+            . '<br />user id: ' . $idvk . '<br /><br />';*/
         mysqli_query($con,"UPDATE users SET VK_TOKEN='$token' WHERE LOGIN='$log';");
 	   mysqli_query($con,"UPDATE users SET VK_ID='$idvk' WHERE LOGIN='$log';");
         $user_friends = $vk->api('friends.get', array(
@@ -206,8 +206,8 @@ if (!empty($_GET['oauth_token']) && !empty($_GET['oauth_verifier'])) {
 
     $response = file_get_contents($url);
     $user_data = json_decode($response, true);
-    echo 'oauth token: ' . $oauth_token . '<br />verifier: ' . $oauth_verifier . '<br /><br />';
-    echo 'oauth token: ' . $oauth_timestamp . '<br />verifier: ' . $oauth_token_secret . '<br /><br />';
+   /* echo 'oauth token: ' . $oauth_token . '<br />verifier: ' . $oauth_verifier . '<br /><br />';
+    echo 'oauth token: ' . $oauth_timestamp . '<br />verifier: ' . $oauth_token_secret . '<br /><br />';*/
     $log=$_SESSION["session_username"];
     mysqli_query($con,"UPDATE users SET TW_TOKEN='$oauth_token' WHERE LOGIN='$log';");
 	mysqli_query($con,"UPDATE users SET TW_VERIFYER='$oauth_verifier' WHERE LOGIN='$log';");

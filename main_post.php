@@ -4,7 +4,7 @@ error_reporting(0);
 require 'vk.php';
 require 'post.php';
 ####Добавить бд и загрузку по сессиям
-$token = '34dabc59fee0033cdb3050537946402b1f8926ab26681440645b5838d4beaad5906a15b5213bda427e1b9';
+$token = 'a07da5c9c6a72d76bcbc3a5bfbd8d88b0dc0e511db1ae657b61eb4235cfebb1a1bdd173f7ec577af6ab65';
 $user_id = 27576466;
 $group_id = null;
 

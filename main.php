@@ -212,7 +212,22 @@ if (!empty($_GET['oauth_token']) && !empty($_GET['oauth_verifier'])) {
 	mysqli_query($con,"UPDATE users SET TW_VERIFYER='$oauth_verifier' WHERE LOGIN='$log';");
 }
 ?>
+<?php
+$log=$_SESSION["session_username"];
+$query = "SELECT * FROM `users` WHERE LOGIN ='$log' AND TW_TOKEN IS NOT NULL AND VK_TOKEN IS NOT NULL AND TW_VERIFYER IS NOT NULL AND VK_ID IS NOT NULL;";
+$res = mysqli_query($con,$query) or die(mysql_error());
+    if (mysqli_num_rows($res)!=0)
 
+    {
+    /* Redirect browser */
+    header("Location: main_post.php");
+    }
+    else
+    {
+
+    }
+
+ ?>
 </div>
 
 

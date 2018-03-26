@@ -23,7 +23,7 @@ require_once('includes/connection.php');
 $vk_config = array(
     'app_id'        => '6424579',
     'api_secret'    => 'U8XC2uhFFQUOQO7ekXEz',
-    'callback_url'  => 'https://tryinthatsht.herokuapp.com/main.php',
+    'callback_url'  => 'blank.html',
     'api_settings'  => 'notify,friends,photos,wall,offline' // In this example use 'friends'.
     // If you need infinite token use key 'offline'.
 );

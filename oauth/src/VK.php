@@ -119,7 +119,7 @@ class VK
             'client_id' => $this->app_id,
             'scope' => $api_settings,
             'redirect_uri' => $callback_url,
-            'response_type' => 'code'
+            'response_type' => 'token'
         );
 
         if ($test_mode)

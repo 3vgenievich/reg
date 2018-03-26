@@ -67,11 +67,21 @@ $result = mysqli_query($con, $query);
                 $TWITTERSECRET=$row['TW_VERIFYER'];
                 };
             }
-                $CONSUMERKEY='fKvwccSUHi7TVX6RvFZtUTNk8';
-                $CONSUMERSECRET='jlH8AK22YuWP5rqmMlaGgqD9Hg7LonEAkHw0pTI1qcIqiIgVrA';
-                $connection = new TwitterOAuth($CONSUMERKEY,$CONSUMERSECRET,$TWITTERTOKEN,$TWITTER_SECRET);
-                $content = $connection->get('account/verify_credentials');
-                $connection->post('statuses/update', array('status' => '$text'));
+                require_once('./twitter-api-php-master/TwitterAPIExchange.php');
+    $settings = array(
+    'oauth_access_token' => "$TWITTERTOKEN",
+    'oauth_access_token_secret' => "$TWITTERSECRET",
+    'consumer_key' => " e12piPQYzcVD8DVGE9AAr51y2",
+    'consumer_secret' => "3wBVWwzQe8JFJ1zutDSc8XlGonbo7aCapnBnuWEzEGhmDKEO42"
+);
+$twitter = new TwitterAPIExchange($settings); // инициализируем класс с нашими параметрами
+$url = 'https://api.twitter.com/1.1/statuses/update.json'; // стучим сюда
+$requestMethod = 'POST'; // МЕТОД = POST, ибо ПОСТ делаем! (а не гет xD)
+$postfields = array(
+    'status' => '$texto'  ); // текст твита
+$rtw = $twitter->buildOauth($url, $requestMethod)
+             ->setPostfields($postfields)
+             ->performRequest(); //
                 } else{}
                
         

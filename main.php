@@ -23,8 +23,8 @@ require_once('includes/connection.php');
 
 ####АВТОРИЗАЦИЯ ВКОНТАКТЕ
 $vk_config = array(
-    'app_id'        => '6425785',
-    'api_secret'    => 'Wu9tK6Pjh9734ZZi0icZ',
+    'app_id'        => '6424579',
+    'api_secret'    => 'U8XC2uhFFQUOQO7ekXEz',
     'callback_url'  => 'blank.html',
     'api_settings'  => 'notify,friends,photos,wall,offline' // In this example use 'friends'.
     // If you need infinite token use key 'offline'.
@@ -90,8 +90,8 @@ if(isset($_POST['token'])&& isset($_POST['uid'])){
 
 // определяем изначальные конфигурационные данные
 
-define('CONSUMER_KEY', 'e12piPQYzcVD8DVGE9AAr51y2');
-define('CONSUMER_SECRET', '3wBVWwzQe8JFJ1zutDSc8XlGonbo7aCapnBnuWEzEGhmDKEO42');
+define('CONSUMER_KEY', 'fKvwccSUHi7TVX6RvFZtUTNk8');
+define('CONSUMER_SECRET', 'jlH8AK22YuWP5rqmMlaGgqD9Hg7LonEAkHw0pTI1qcIqiIgVrA');
 
 define('REQUEST_TOKEN_URL', 'https://api.twitter.com/oauth/request_token');
 define('AUTHORIZE_URL', 'https://api.twitter.com/oauth/authorize');

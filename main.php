@@ -220,6 +220,7 @@ if (!empty($_GET['oauth_token']) && !empty($_GET['oauth_verifier'])) {
 
 <div id="logout">
 		<p><a href="logout.php">Выйти из аккаунта </a></p>
+		<P><a href="main_post.php">ТЕСТ</a></p>
 </div>
 
 

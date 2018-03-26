@@ -53,18 +53,13 @@ if(isset($_POST['textposta']) or isset($_POST['imgsrc'])&& isset($_POST['datetim
 
 
     if($result){
-     $message = "Аккаунт успешно создан!";
-    } else {
-     $message = "не удалось сохранить данные!";
-    }
-
-    } else {
-     $message = "Такой логин уже используется!";
-    }
-
+     $message = "Пост сохранён!";
+ }
 } else {
      $message = "Заполните все поля!";
 }
+}
+
 
 ?>
 

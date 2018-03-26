@@ -3,15 +3,11 @@
 
 
 	<?php
-
 if(isset($_POST["register"])){
-
-
 if(!empty($_POST['LOGIN']) && !empty($_POST['PASSWORD'])) {
 	$LOGIN=$_POST['LOGIN'];
 	$PASSWORD=$_POST['PASSWORD'];
 	
-
 		
 	$query=mysqli_query($con,"SELECT * FROM users WHERE LOGIN='".$LOGIN."'");
 	$numrows=mysqli_num_rows($query);
@@ -21,19 +17,15 @@ if(!empty($_POST['LOGIN']) && !empty($_POST['PASSWORD'])) {
 	$sql="INSERT INTO users
 			(LOGIN,PASSWORD) 
 			VALUES('$LOGIN', '$PASSWORD')";
-
 	$result=mysqli_query($con,$sql);
-
 	if($result){
 	 $message = "Аккаунт успешно создан!";
 	} else {
 	 $message = "не удалось сохранить данные!";
 	}
-
 	} else {
 	 $message = "Такой логин уже используется!";
 	}
-
 } else {
 	 $message = "Заполните все поля!";
 }

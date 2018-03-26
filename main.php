@@ -8,7 +8,8 @@ if(!isset($_SESSION["session_username"])) {
 
 <?php include("includes/header.php"); ?>
 <div id="welcome">	
-	<h2>Привет, <span><?php echo $_SESSION['session_username'];?> </span>!<br> для того что бы создавать отложенные посты необходимо авторизоваться с помощью социальных сетей.</h2>
+	<h3>Привет, <span><?php echo $_SESSION['session_username'];?> </span>!  Для создания отложенных постов необходимо авторизоваться с помощью социальных сетей.</h3>
+    <h4>Из-за особенностей методов ВКонтакте, токен вконтакте придется получать вручную.</h4>
 <?php
 
 error_reporting(E_ALL);
@@ -36,7 +37,7 @@ try {
         $authorize_url = $vk->getAuthorizeURL(
             $vk_config['api_settings'], $vk_config['callback_url']);
 
-        echo '<a href="' . $authorize_url . '" target="_blank">Авторизоваться через ВК</a>';
+        echo '<a href="' . $authorize_url . '" target="_blank">Авторизуйтесь через ВК</a>';
     } else {
         $access_token = $vk->getAccessToken($_REQUEST['code'], $vk_config['callback_url']);
           $token=$access_token['access_token'];
@@ -62,7 +63,28 @@ try {
 }
 ?>
 
+<form name="addtokenform" id="addtokenform" action="" method="post">
+        <input type="text" name="token" id="token" class="input" value="" size="50" placeholder="Вставьте сюда токен вконтакте" />
+        <input type="text" name="uid" id="uid" class="input" value="" size="50" placeholder="Вставьте сюда ID вконтакте" />
+        <input type="submit" name="submit" id="register" class="button" value="ОК" />
 
+</form>
+
+<?php if (!empty($message)) {echo "<p class=\"error\">" . "Внимание: ". $message . "</p>";} ?>
+
+<?php
+if(isset($_POST["submit"])){
+
+if(isset($_POST['token'])&& isset($_POST['uid'])){
+
+    $token=$_POST['token'];
+    $uid=$_POST['uid'];
+    $LOGIN=$_SESSION['session_username'];
+    $result=mysqli_query($con,"UPDATE users SET VK_TOKEN='$token' WHERE LOGIN='$LOGIN';");
+    $result=mysqli_query($con,"UPDATE users SET VK_ID='$uid' WHERE LOGIN='$LOGIN';");
+}
+}
+    ?>
 
 <?php
 
@@ -122,7 +144,7 @@ $oauth_token_secret = $response['oauth_token_secret'];
 
 $link = AUTHORIZE_URL . '?oauth_token=' . $oauth_token;
 
-echo '<br><a href="' . $link . '" target="_blank">Авторизоваться через Twitter</a>';
+echo '<br><a href="' . $link . '">Авторизоваться через Twitter</a>';
 
 
 if (!empty($_GET['oauth_token']) && !empty($_GET['oauth_verifier'])) {

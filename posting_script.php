@@ -25,17 +25,23 @@ $result = mysqli_query($con, $query);
                  $img=$row['IMG'];
                  $tw=$row['VK'];
                  $vk=$row['TW'];
-        
-                $VKTOKEN=mysqli_query($con,"SELECT VK_TOKEN FROM users WHERE LOGIN ='$login'");
-                $VKID=mysqli_query($con,"SELECT VK_ID FROM users WHERE LOGIN ='$login'");
-                $TWITTERTOKEN=mysqli_query($con,"SELECT TW_TOKEN FROM users WHERE LOGIN ='$login'");
-                $TWITTER_SECRET=mysqli_query($con,"SELECT TW_VERIFYER FROM users WHERE LOGIN ='$login'");
-                $CONSUMERKEY='fKvwccSUHi7TVX6RvFZtUTNk8';
-                $CONSUMERSECRET='jlH8AK22YuWP5rqmMlaGgqD9Hg7LonEAkHw0pTI1qcIqiIgVrA';
+        }
         if ($vk!=0){
-                $token = '$VKTOKEN';
-                $user_id = '$VKID';
-                $group_id ='$VKID';
+                $query =mysqli_query($con,"SELECT * FROM users WHERE LOGIN ='".$login."'");
+                $numrows=mysqli_num_rows($query);
+                if($numrows!=0)
+                {
+                while($row=mysqli_fetch_assoc($query))
+                {
+                $VKTOKEN=$row['VK_TOKEN'];
+                $VKID=$row['VK_ID'];
+                };
+            }
+
+                echo $VKTOKEN;
+                 $token = $VKTOKEN;
+                $user_id = $VKID;
+                 $group_id =$VKID;
 
                 $text = '$texto';
                 $image = '$img';
@@ -51,6 +57,11 @@ $result = mysqli_query($con, $query);
                                             }
                     } else{}
         if ($tw!=0){
+                $TWITTERTOKEN=mysqli_query($con,"SELECT TW_TOKEN FROM users WHERE LOGIN ='".$login."'");
+                $TWITTER_SECRET=mysqli_query($con,"SELECT TW_VERIFYER FROM users WHERE LOGIN ='".$login."'");
+
+                $CONSUMERKEY='fKvwccSUHi7TVX6RvFZtUTNk8';
+                $CONSUMERSECRET='jlH8AK22YuWP5rqmMlaGgqD9Hg7LonEAkHw0pTI1qcIqiIgVrA';
                 $connection = new TwitterOAuth($CONSUMERKEY,$CONSUMERSECRET,$TWITTERTOKEN,$TWITTER_SECRET);
                 $content = $connection->get('account/verify_credentials');
                 $connection->post('statuses/update', array('status' => '$text'));
@@ -58,16 +69,13 @@ $result = mysqli_query($con, $query);
                
         
                 }
-            }
+            
 
 
     
        
     // очищаем результат
-    mysqli_free_result($result);
 
- 
-mysqli_close($con);
-?>
+               ?>
 </body>
 </html>

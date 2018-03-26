@@ -33,22 +33,21 @@ $result = mysqli_query($con, $query);
                 {
                 while($row=mysqli_fetch_assoc($query))
                 {
-                $VKTOKEN=$row['VK_TOKEN'];
-                $VKID=$row['VK_ID'];
+                $token=$row['VK_TOKEN'];
+                $user_id=$row['VK_ID'];
                 };
             }
 
-                echo $VKTOKEN;
-                echo $VKID;
-                 $token = '$VKTOKEN';
-                $user_id = '$VKID';
-                 $group_id ='$VKID';
+               
+                $token;
+                $user_id;
+                 $group_id =$user_id;
 
                 $text = '$texto';
                 $image = '$img';
 
                     try {
-                        $vk = \vkApi\vk::create('$token');
+                        $vk = \vkApi\vk::create('$VKTOKEN');
                         $post = new \vkApi\post($vk, $user_id, $group_id);
                         $post->post($text, $image);
                         echo 'Success!';

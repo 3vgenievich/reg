@@ -22,8 +22,7 @@ if(!isset($_SESSION["session_username"])) {
     <input type="text" name="imgsrc" id="img_src" class="input" value="" size="30" placeholder="Добавьте ссылку на картинку" class="input" /></label>
 
     <input type='text' class='datepicker-here' data-timepicker="true" placeholder="выберите дату поста" name="datetime" class="input"  />
-        <p class="submit">
-        <input type="submit" name="submit" class="button" value="Опубликовать пост" /><br>
+
         <p class="submit">
         <input type="submit" name="submit" class="button" value="Отложить пост" />
       
